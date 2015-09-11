@@ -12,6 +12,3 @@ CC_OPTIONS += -mword-relocations
 CC_OPTIONS += -mword-relocations
 CC_OPTIONS += -mabi=apcs-gnu
 CC_OPTIONS += -fno-toplevel-reorder
-CC_OPTIONS += -Wno-unused-variable
-CC_OPTIONS += -Wno-unused-but-set-variable
-CC_OPTIONS += -Wno-unused-label

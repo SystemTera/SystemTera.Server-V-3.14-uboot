@@ -1221,7 +1221,7 @@ int mmc_start_init(struct mmc *mmc)
 	err = sd_send_op_cond(mmc);
 
 	/* If the command timed out, we check for an MMC card */
-/*	if (err == TIMEOUT) {
+	if (err == TIMEOUT) {
 		err = mmc_send_op_cond(mmc);
 
 		if (err && err != IN_PROGRESS) {
@@ -1230,7 +1230,7 @@ int mmc_start_init(struct mmc *mmc)
 #endif
 			return UNUSABLE_ERR;
 		}
-	}*/
+	}
 
 	if (err == IN_PROGRESS)
 		mmc->init_in_progress = 1;

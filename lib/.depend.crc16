@@ -1,9 +1,0 @@
-crc16.o: crc16.c \
- /usr/src/linux-3.12/u-boot-VAR-SOM-AM33-SDK7/include/crc.h \
- /usr/src/linux-3.12/u-boot-VAR-SOM-AM33-SDK7/include/linux/types.h \
- /usr/src/linux-3.12/u-boot-VAR-SOM-AM33-SDK7/include/linux/config.h \
- /usr/src/linux-3.12/u-boot-VAR-SOM-AM33-SDK7/include/linux/posix_types.h \
- /usr/src/linux-3.12/u-boot-VAR-SOM-AM33-SDK7/include/linux/stddef.h \
- /usr/src/linux-3.12/u-boot-VAR-SOM-AM33-SDK7/include/asm/posix_types.h \
- /usr/src/linux-3.12/u-boot-VAR-SOM-AM33-SDK7/include/asm/types.h \
- /usr/lib/gcc/armv7a-hardfloat-linux-gnueabi/4.8.3/include/stdbool.h
