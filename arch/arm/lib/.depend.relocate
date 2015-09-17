@@ -1,4 +1,0 @@
-relocate.o: relocate.S \
- /usr/src/u-boot/u-boot-VAR-SOM-AM33-SDK7/include/linux/linkage.h \
- /usr/src/u-boot/u-boot-VAR-SOM-AM33-SDK7/include/asm/linkage.h \
- /usr/src/u-boot/u-boot-VAR-SOM-AM33-SDK7/include/linux/config.h

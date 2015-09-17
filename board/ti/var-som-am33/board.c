@@ -220,7 +220,8 @@ int board_init(void)
 	gpio_free(GPIO_SOM_REV_BIT0_GPIO);
 	gpio_free(GPIO_SOM_REV_BIT1_GPIO);
 	gpio_free(GPIO_SOM_REV_BIT2_GPIO);
-
+	
+	printf("SystemTera.Server.V by BeKa Software GmbH\n");
 #if !defined(CONFIG_SPL_BUILD)
 	/*
 	2 = rev 1.2
