@@ -141,6 +141,60 @@ static struct module_pin_mux mmc0_pin_mux[] = {
 	{-1},
 };
 
+/* SystemTera.Server.V specific pin mux for KNX bus interface */
+static struct module_pin_mux knx_pin_mux[] = {
+   {OFFSET(uart1_rxd), MODE(0) | RXACTIVE | PULLUP_EN},
+   {OFFSET(uart1_txd), MODE(0) | PULLUDEN},
+   {OFFSET(mii1_rxclk), MODE(7) | RXACTIVE | PULLUDEN},    /* NCN5120 nSave signal */
+   {OFFSET(mii1_txd3), MODE(7)},                           /* KNX programming mode led */
+   {OFFSET(mii1_txd2), MODE(7) | RXACTIVE | PULLUDEN},     /* KNX programming mode button */
+   {-1},
+};
+
+/* SystemTera.Server.V specific pin mux for digital inputs */
+static struct module_pin_mux digital_in_pin_mux[] = {
+   {OFFSET(gpmc_a4), MODE(7) | RXACTIVE | PULLUDEN},   /* IN1 */
+   {OFFSET(gpmc_a2), MODE(7) | RXACTIVE | PULLUDEN},   /* IN2 */
+   {OFFSET(gpmc_a0), MODE(7) | RXACTIVE | PULLUDEN},   /* IN3 */
+   {OFFSET(gpmc_a6), MODE(7) | RXACTIVE | PULLUDEN},   /* IN4 */
+   {OFFSET(gpmc_a8), MODE(7) | RXACTIVE | PULLUDEN},   /* IN5 */
+   {OFFSET(gpmc_a10), MODE(7) | RXACTIVE | PULLUDEN},  /* IN6 */
+   {OFFSET(gpmc_a7), MODE(7) | RXACTIVE | PULLUDEN},   /* IN7 */
+   {OFFSET(gpmc_a5), MODE(7) | RXACTIVE | PULLUDEN},   /* IN8 */
+   {-1},
+};
+
+/* SystemTera.Server.V specific pin mux for relais outputs */
+static struct module_pin_mux digital_out_pin_mux[] = {
+   {OFFSET(gpmc_a9), MODE(7)},   /* OUT1 */
+   {OFFSET(gpmc_a11), MODE(7)},  /* OUT2 */
+   {-1},
+};
+
+/* SystemTera.Server.V specific pin mux for EIA-485 half-duplex uart */
+static struct module_pin_mux eia485_pin_mux[] = {
+   {OFFSET(emu1), MODE(7)},  /* TX enable */
+   {-1},
+};
+
+/* SystemTera.Server.V specific pin mux for general purpose red/green leds */
+static struct module_pin_mux gpled_pin_mux[] = {
+   {OFFSET(lcd_ac_bias_en), MODE(7)},  /* LED 1 red */
+   {OFFSET(gpmc_a3), MODE(7)},         /* LED 1 green */
+   {OFFSET(gpmc_a1), MODE(7)},         /* LED 2 green */
+   {OFFSET(lcd_hsync), MODE(7)},       /* LED 2 red */
+   {OFFSET(lcd_pclk), MODE(7)},        /* LED 3 green */
+   {OFFSET(gpmc_csn3), MODE(7)},       /* LED 3 red */
+   {-1},
+};
+
+/* SystemTera.Server.V specific pin mux for miscellaneous functions */
+static struct module_pin_mux misc_pin_mux[] = {
+   {OFFSET(emu0), MODE(7)},  /* optional switch */
+   {-1},
+};
+
+
 #if defined(CONFIG_NOR_BOOT)
 void enable_norboot_pin_mux(void)
 {
@@ -207,5 +261,14 @@ void enable_board_pin_mux(void)
 	configure_module_pin_mux(clkout_pin_mux);
 	configure_module_pin_mux(bt_uart_select_pin_mux);
 	configure_module_pin_mux(rgmii2_strapping_pin_mux);
+
+
+	 /* SystemTera.Server.V specific pinmuxes */
+        configure_module_pin_mux(knx_pin_mux);
+        configure_module_pin_mux(digital_in_pin_mux);
+        configure_module_pin_mux(digital_out_pin_mux);
+        configure_module_pin_mux(eia485_pin_mux);
+        configure_module_pin_mux(gpled_pin_mux);
+        configure_module_pin_mux(misc_pin_mux);
 }
 

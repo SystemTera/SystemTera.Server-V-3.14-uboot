@@ -300,13 +300,13 @@
 		"root=${nandroot} " \
 		"rootfstype=${nandrootfstype}\0" \
 	"dfu_alt_info_nand=" DFU_ALT_INFO_NAND "\0" \
-	"nandroot=ubi0:rootfs rw ubi.mtd=NAND.file-system," \
+	"nandroot=ubi0:system rw ubi.mtd=FileSystem," \
 		__stringify(CONFIG_SYS_NAND_PAGE_SIZE) "\0" \
 	"nandrootfstype=ubifs rootwait=1\0" \
 	"nandboot=echo Booting from nand ...; " \
 		"run nandargs; " \
-		"nand read ${fdtaddr} NAND.u-boot-spl-os; " \
-		"nand read ${loadaddr} NAND.kernel; " \
+		"nand read ${fdtaddr} U-boot-spl-os; " \
+		"nand read ${loadaddr} Kernel; " \
 		"bootz ${loadaddr} - ${fdtaddr}\0" \
 	"bootcmd_nand=run nandboot;\0"
 

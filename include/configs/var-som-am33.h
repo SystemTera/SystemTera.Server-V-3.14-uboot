@@ -32,9 +32,29 @@
 
 #define CONFIG_ENV_VARS_UBOOT_RUNTIME_CONFIG
 
+#ifdef CONFIG_VAR_BOOT_FROM_SD_DISABLE
+#undef VAR_BOOT_TARGETS
+#define VAR_BOOT_TARGETS \
+        "boot_targets=" \
+                BOOT_TARGETS_NAND " " \
+                BOOT_TARGETS_USB " " \
+                "\0"
+#else
+#undef VAR_BOOT_TARGETS
+#define VAR_BOOT_TARGETS \
+        "boot_targets=" \
+                BOOT_TARGETS_MMC " " \
+                BOOT_TARGETS_USB " " \
+                BOOT_TARGETS_NAND " " \
+                "\0"
+#endif
+
+
 #ifndef CONFIG_SPL_BUILD
 #define CONFIG_EXTRA_ENV_SETTINGS \
 	"loadaddr=0x80200000\0" \
+	"bootenv uEnv.txt\0" \
+	"loadbootenv 'fatload mmc ${mmcdev} ${loadaddr} ${bootenv}'\0"\
 	"fdtaddr=0x80F80000\0" \
 	"fdt_high=0xa0000000\0" \
 	"boot_fdt=try\0" \
@@ -42,7 +62,7 @@
 	"bootpart=0\0" \
 	"bootdir=\0" \
 	"bootfile=zImage\0" \
-	"fdtfile=undefined\0" \
+	"fdtfile=var-som-am33.dtb\0" \
 	"console=ttyO0,115200n8\0" \
 	"partitions=" \
 		"uuid_disk=${uuid_gpt_disk};" \
@@ -125,8 +145,10 @@
 	BOOTCMD_COMMON \
 	BOOTCMD_NAND \
 	BOOTCMD_MMC \
-	BOOTCMD_USB
+	BOOTCMD_USB \
+	VAR_BOOT_TARGETS
 #endif
+
 
 /* NS16550 Configuration */
 #define CONFIG_SYS_NS16550_COM1		0x44e09000	/* Base EVM has UART0 */
@@ -206,16 +228,16 @@
 	!defined(CONFIG_EMMC_BOOT)
   #define MTDIDS_DEFAULT		      "nand0=nand.0"
   #define MTDPARTS_DEFAULT		      "mtdparts=nand.0:" \
-					      "128k(NAND.SPL)," \
-					      "128k(NAND.SPL.backup1)," \
-					      "128k(NAND.SPL.backup2)," \
-					      "128k(NAND.SPL.backup3)," \
-					      "256k(NAND.u-boot-spl-os)," \
-					      "1m(NAND.u-boot)," \
-					      "128k(NAND.u-boot-env)," \
-					      "128k(NAND.u-boot-env.backup1)," \
-					      "8m(NAND.kernel)," \
-					      "-(NAND.rootfs)"
+					      "128k(SPL)," \
+					      "128k(SPL.backup1)," \
+					      "128k(SPL.backup2)," \
+					      "128k(SPL.backup3)," \
+					      "256k(U-boot-spl-os)," \
+					      "1m(U-boot)," \
+					      "128k(U-boot-Env)," \
+					      "128k(empty)," \
+					      "8m(Kernel)," \
+					      "-(FileSystem)"
   #undef CONFIG_ENV_IS_NOWHERE
   #if defined(CONFIG_ENV_IS_IN_FAT)
        #define FAT_ENV_FILE                    "u-boot_env.txt"
@@ -321,16 +343,16 @@
 #undef DFU_ALT_INFO_NAND
 #endif
 #define DFU_ALT_INFO_NAND \
-	"NAND.SPL part 0 1;" \
-	"NAND.SPL.backup1 part 0 2;" \
-	"NAND.SPL.backup2 part 0 3;" \
-	"NAND.SPL.backup3 part 0 4;" \
-	"NAND.u-boot-spl-os part 0 5;" \
-	"NAND.u-boot part 0 6;" \
-	"NAND.u-boot-env part 0 7;" \
-	"NAND.u-boot-env.backup1 part 0 8;" \
-	"NAND.kernel part 0 9;" \
-	"NAND.rootfs part 0 10"
+	"SPL part 0 1;" \
+	"SPL.backup1 part 0 2;" \
+	"SPL.backup2 part 0 3;" \
+	"SPL.backup3 part 0 4;" \
+	"u-boot-spl-os part 0 5;" \
+	"u-boot part 0 6;" \
+	"u-boot-env part 0 7;" \
+	"u-boot-env.backup1 part 0 8;" \
+	"Kernel part 0 9;" \
+	"FileSystem part 0 10"
 #endif
 #define CONFIG_DFU_RAM
 #define DFU_ALT_INFO_RAM \
