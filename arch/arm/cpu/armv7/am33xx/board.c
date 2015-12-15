@@ -220,7 +220,7 @@ void s_init(void)
 #endif
 
 	prcm_init();
-	//set_mux_conf_regs();
+	set_mux_conf_regs();
 	/* Enable RTC32K clock */
 	rtc32k_enable();
 	sdram_init();

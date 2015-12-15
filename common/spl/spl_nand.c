@@ -75,7 +75,7 @@ void spl_nand_load_image(void)
 #endif
 #endif
 	/* Load u-boot */
-	nand_spl_load_image(CONFIG_SYS_NAND_U_BOOT_OFFS,
+	int ld = nand_spl_load_image(CONFIG_SYS_NAND_U_BOOT_OFFS,
 		CONFIG_SYS_NAND_PAGE_SIZE, (void *)header);
 	spl_parse_image_header(header);
 	nand_spl_load_image(CONFIG_SYS_NAND_U_BOOT_OFFS,

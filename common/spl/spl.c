@@ -168,6 +168,7 @@ void board_init_r(gd_t *dummy1, ulong dummy2)
 #endif
 #ifdef CONFIG_SPL_NAND_SUPPORT
 	case BOOT_DEVICE_NAND:
+		debug("boot nand_device\n");
 		spl_nand_load_image();
 		break;
 #endif

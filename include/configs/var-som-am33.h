@@ -199,6 +199,7 @@
 /* NAND support */
 #ifdef CONFIG_NAND
 /* NAND: device related configs */
+#define CONFIG_SYS_NAND_U_BOOT_OFFS           	0x000C0000
 #define CONFIG_SYS_NAND_PAGE_SIZE		2048
 #define CONFIG_SYS_NAND_OOBSIZE			64
 #define CONFIG_SYS_NAND_BLOCK_SIZE		(128*1024)
