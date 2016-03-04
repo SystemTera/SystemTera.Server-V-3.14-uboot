@@ -295,9 +295,11 @@
 #define BOOTCMD_NAND \
 	"mtdids=" MTDIDS_DEFAULT "\0" \
 	"mtdparts=" MTDPARTS_DEFAULT "\0" \
+	"teracom_hwrev=B00\0" \
 	"nandargs=setenv bootargs console=${console} " \
 		"${optargs} " \
 		"root=${nandroot} " \
+		"teracom_hwrev=${teracom_hwrev} " \
 		"rootfstype=${nandrootfstype}\0" \
 	"dfu_alt_info_nand=" DFU_ALT_INFO_NAND "\0" \
 	"nandroot=ubi0:system rw ubi.mtd=FileSystem," \

@@ -145,22 +145,6 @@ void set_mux_conf_regs(void)
 {
 	enable_board_pin_mux();
 	return;
-	
-	gpio_request(21, "gpio2_25");
-	gpio_request(51, "gpio1_19");
-	gpio_request(49, "gpio1_17");
-	gpio_request(20, "gpio2_23");
-	gpio_request(22, "gpio2_24");
-	gpio_request(47, "gpio2_8");
-
-	gpio_direction_output(21, 1);
-	gpio_direction_output(51, 1);
-	gpio_direction_output(49, 1);
-	gpio_direction_output(20, 1);
-	gpio_direction_output(22, 1);
-	gpio_direction_output(47, 1);
-	return;
-
 
 	/* Reset the RMII ethernet chip.
 	 */
@@ -172,6 +156,7 @@ void set_mux_conf_regs(void)
 	gpio_set_value(GPIO_PHY1_RST, 1);
 
 	enable_rmii1_pin_mux();
+	return;
 
 	/* Reset the RGMII ethernet chip.
 	 */
