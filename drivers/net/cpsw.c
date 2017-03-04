@@ -465,7 +465,6 @@ static inline u32 wait_for_user_access(void)
 		udelay(10);
 
 	if (timeout == -1) {
-		printf("wait_for_user_access Timeout\n");
 		return -ETIMEDOUT;
 	}
 	return reg;
@@ -479,9 +478,6 @@ static inline void wait_for_idle(void)
 	while (timeout-- &&
 		((__raw_readl(&mdio_regs->control) & CONTROL_IDLE) == 0))
 		udelay(10);
-
-	if (timeout == -1)
-		printf("wait_for_idle Timeout\n");
 }
 
 static int cpsw_mdio_read(struct mii_dev *bus, int phy_id,
