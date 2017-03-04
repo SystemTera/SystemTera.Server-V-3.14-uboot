@@ -144,7 +144,6 @@ void set_uart_mux_conf(void)
 void set_mux_conf_regs(void)
 {
 	enable_board_pin_mux();
-	return;
 
 	/* Reset the RMII ethernet chip.
 	 */
@@ -156,7 +155,6 @@ void set_mux_conf_regs(void)
 	gpio_set_value(GPIO_PHY1_RST, 1);
 
 	enable_rmii1_pin_mux();
-	return;
 
 	/* Reset the RGMII ethernet chip.
 	 */
@@ -223,7 +221,7 @@ int board_init(void)
 	gpio_free(GPIO_SOM_REV_BIT1_GPIO);
 	gpio_free(GPIO_SOM_REV_BIT2_GPIO);
 	
-	printf("SystemTera.Server.V by BeKa Software GmbH\n");
+	printf("SystemTera.Server.V by SystemTera Electronics GmbH\n");
 #if !defined(CONFIG_SPL_BUILD)
 	/*
 	2 = rev 1.2
@@ -289,7 +287,7 @@ int board_phy_config(struct phy_device *phydev)
 	if (phydev->drv->config)
 		phydev->drv->config(phydev);
 
-	if (phydev->phy_id == 0x221560 || phydev->phy_id == 0x00221556) {
+	if ((phydev->phy_id & 0xfffff0) == 0x221560 || phydev->phy_id == 0x00221556) {
 		/* KS8051/KS8081 fixup */
 		/* override strap, set RMII mode */
 		printf ("Found Micrel KS8051/KS8081 PHY\n");

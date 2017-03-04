@@ -262,13 +262,12 @@ void enable_board_pin_mux(void)
 	configure_module_pin_mux(bt_uart_select_pin_mux);
 	configure_module_pin_mux(rgmii2_strapping_pin_mux);
 
-
-	 /* SystemTera.Server.V specific pinmuxes */
-        configure_module_pin_mux(knx_pin_mux);
-        configure_module_pin_mux(digital_in_pin_mux);
-        configure_module_pin_mux(digital_out_pin_mux);
-        configure_module_pin_mux(eia485_pin_mux);
-        configure_module_pin_mux(gpled_pin_mux);
-        configure_module_pin_mux(misc_pin_mux);
+	/* SystemTera.Server.V specific pinmuxes */
+	configure_module_pin_mux(knx_pin_mux);
+	configure_module_pin_mux(digital_in_pin_mux);
+	configure_module_pin_mux(digital_out_pin_mux);
+	configure_module_pin_mux(eia485_pin_mux);
+	configure_module_pin_mux(gpled_pin_mux);
+	configure_module_pin_mux(misc_pin_mux);
 }
 
