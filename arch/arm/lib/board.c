@@ -62,15 +62,25 @@ extern void dataflash_print_info(void);
  ************************************************************************
  * May be supplied by boards if desired
  */
-__weak void coloured_LED_init(void) {}
-__weak void red_led_on(void) {}
-__weak void red_led_off(void) {}
-__weak void green_led_on(void) {}
-__weak void green_led_off(void) {}
-__weak void yellow_led_on(void) {}
-__weak void yellow_led_off(void) {}
-__weak void blue_led_on(void) {}
-__weak void blue_led_off(void) {}
+inline void __coloured_LED_init(void) {}
+void coloured_LED_init(void)
+	__attribute__((weak, alias("__coloured_LED_init")));
+inline void __red_led_on(void) {}
+void red_led_on(void) __attribute__((weak, alias("__red_led_on")));
+inline void __red_led_off(void) {}
+void red_led_off(void) __attribute__((weak, alias("__red_led_off")));
+inline void __green_led_on(void) {}
+void green_led_on(void) __attribute__((weak, alias("__green_led_on")));
+inline void __green_led_off(void) {}
+void green_led_off(void) __attribute__((weak, alias("__green_led_off")));
+inline void __yellow_led_on(void) {}
+void yellow_led_on(void) __attribute__((weak, alias("__yellow_led_on")));
+inline void __yellow_led_off(void) {}
+void yellow_led_off(void) __attribute__((weak, alias("__yellow_led_off")));
+inline void __blue_led_on(void) {}
+void blue_led_on(void) __attribute__((weak, alias("__blue_led_on")));
+inline void __blue_led_off(void) {}
+void blue_led_off(void) __attribute__((weak, alias("__blue_led_off")));
 
 /*
  ************************************************************************
@@ -189,21 +199,27 @@ typedef int (init_fnc_t) (void);
 
 int print_cpuinfo(void);
 
-__weak void dram_init_banksize(void)
+void __dram_init_banksize(void)
 {
 	gd->bd->bi_dram[0].start = CONFIG_SYS_SDRAM_BASE;
 	gd->bd->bi_dram[0].size =  gd->ram_size;
 }
+void dram_init_banksize(void)
+	__attribute__((weak, alias("__dram_init_banksize")));
 
-__weak int arch_cpu_init(void)
+int __arch_cpu_init(void)
 {
 	return 0;
 }
+int arch_cpu_init(void)
+	__attribute__((weak, alias("__arch_cpu_init")));
 
-__weak int power_init_board(void)
+int __power_init_board(void)
 {
 	return 0;
 }
+int power_init_board(void)
+	__attribute__((weak, alias("__power_init_board")));
 
 	/* Record the board_init_f() bootstage (after arch_cpu_init()) */
 static int mark_bootstage(void)

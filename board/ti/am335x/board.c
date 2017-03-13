@@ -158,7 +158,7 @@ void set_mux_conf_regs(void)
 
 	/* Reset the RGMII ethernet chip.
 	 */
-	gpio_request(GPIO_PHY2_RST, "phy2_rst");
+/*	gpio_request(GPIO_PHY2_RST, "phy2_rst");
 	gpio_request(55, "rgmii_phyaddr2");
 	gpio_request(56, "rgmii_mode0");
 	gpio_request(57, "rgmii_mode1");
@@ -180,7 +180,7 @@ void set_mux_conf_regs(void)
 	gpio_set_value(GPIO_PHY2_RST, 1);
 	udelay(10000);
 
-	enable_rgmii2_pin_mux();
+	enable_rgmii2_pin_mux();*/
 }
 
 void sdram_init(void)

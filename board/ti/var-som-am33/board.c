@@ -155,6 +155,7 @@ void set_mux_conf_regs(void)
 	gpio_set_value(GPIO_PHY1_RST, 1);
 
 	enable_rmii1_pin_mux();
+	return;
 
 	/* Reset the RGMII ethernet chip.
 	 */
